@@ -5,14 +5,14 @@ import com.yldog.domain.valueobject.Money;
 import com.yldog.domain.valueobject.OrderId;
 import com.yldog.order.service.domain.valueobject.OrderItemId;
 
-public class OrderItem extends EntityBase<OrderItemId> {
+public class OrderItemEntity extends EntityBase<OrderItemId> {
     private OrderId orderId;
     private final Product product;
     private final int quantity;
     private final Money price;
     private final Money subTotal;
 
-    private OrderItem(Builder builder) {
+    private OrderItemEntity(Builder builder) {
         super.setId(builder.orderItemId);
         product = builder.product;
         quantity = builder.quantity;
@@ -90,8 +90,8 @@ public class OrderItem extends EntityBase<OrderItemId> {
             return this;
         }
 
-        public OrderItem build() {
-            return new OrderItem(this);
+        public OrderItemEntity build() {
+            return new OrderItemEntity(this);
         }
     }
 }

@@ -16,7 +16,7 @@ public class Order extends AggregateRoot<OrderId> {
     private final RestaurantId restaurantId;
     private final StreetAddress deliveryAddress;
     private final Money price;
-    private final List<OrderItem> items;
+    private final List<OrderItemEntity> items;
 
     private TrackingId trackingId;
     private OrderStatus orderStatus;
@@ -86,7 +86,7 @@ public class Order extends AggregateRoot<OrderId> {
                 + " is not equal to Order items total: " + orderItemsTotal.getAmount() + "!");
     }
 
-    private void validateItemPrice(OrderItem orderItem) {
+    private void validateItemPrice(OrderItemEntity orderItem) {
         if (!orderItem.isPriceValid())
             throw new DomainException("Order item price: " + orderItem.getPrice().getAmount() +
                     " is not valid for product" + orderItem.getProduct().getId().getValue());
@@ -96,7 +96,7 @@ public class Order extends AggregateRoot<OrderId> {
 
     private void initializeOrderItems() {
         long itemId = 1L;
-        for (OrderItem orderItem : items) {
+        for (OrderItemEntity orderItem : items) {
             orderItem.initializeOrderItem(super.getId(), new OrderItemId(itemId++));
         }
     }
@@ -129,7 +129,7 @@ public class Order extends AggregateRoot<OrderId> {
         return price;
     }
 
-    public List<OrderItem> getItems() {
+    public List<OrderItemEntity> getItems() {
         return items;
     }
 
@@ -154,7 +154,7 @@ public class Order extends AggregateRoot<OrderId> {
         private RestaurantId restaurantId;
         private StreetAddress deliveryAddress;
         private Money price;
-        private List<OrderItem> items;
+        private List<OrderItemEntity> items;
         private TrackingId trackingId;
         private OrderStatus orderStatus;
         private List<String> failureMessages;
@@ -188,7 +188,7 @@ public class Order extends AggregateRoot<OrderId> {
             return this;
         }
 
-        public Builder items(List<OrderItem> val) {
+        public Builder items(List<OrderItemEntity> val) {
             items = val;
             return this;
         }

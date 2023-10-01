@@ -7,11 +7,11 @@ import com.yldog.domain.valueobject.RestaurantId;
 import com.yldog.order.service.domain.dto.create.CreateOrderCommand;
 import com.yldog.order.service.domain.dto.create.CreateOrderResponse;
 import com.yldog.order.service.domain.dto.create.OrderAddress;
-import com.yldog.order.service.domain.dto.create.OrderItem;
+import com.yldog.order.service.domain.dto.create.OrderItemDTO;
 import com.yldog.order.service.domain.entity.Order;
+import com.yldog.order.service.domain.entity.OrderItemEntity;
 import com.yldog.order.service.domain.entity.Product;
 import com.yldog.order.service.domain.entity.Restaurant;
-import com.yldog.order.service.domain.entity.OrderItem;
 import com.yldog.order.service.domain.valueobject.StreetAddress;
 import org.springframework.stereotype.Component;
 
@@ -46,15 +46,16 @@ public class OrderDataMapper {
                 .orderStatus(order.getOrderStatus())
                 .build();
     }
-    private List<com.yldog.order.service.domain.entity.OrderItem> orderItemsToOrderItemEntities(List<OrderItem> orderItems) {
+    private List<OrderItemEntity> orderItemsToOrderItemEntities(List<OrderItemDTO> orderItems) {
         return orderItems.stream()
                 .map(orderItem ->
-                        OrderItem.builder()
+                        OrderItemEntity.builder()
                                 .product(new Product(new ProductId(orderItem.getProductId())))
                                 .price(new Money(orderItem.getPrice()))
                                 .quantity(orderItem.getQuantity())
                                 .subTotal(new Money(orderItem.getSubTotal()))
-                                .build()).collect(Collectors.toList());
+                                .build())
+                .collect(Collectors.toList());
     }
 
     private StreetAddress orderAddressToStreetAddress(OrderAddress orderAddress) {
