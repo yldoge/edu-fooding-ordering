@@ -16,7 +16,7 @@ import java.util.List;
 public class OrderDomainServiceImpl implements OrderDomainService{
     private static final String UTC = "UTC";
     @Override
-    public OrderCreatedEvent validateAndinitiateOrder(Order order, Restaurant restaurant) {
+    public OrderCreatedEvent validateAndInitiateOrder(Order order, Restaurant restaurant) {
         validateRestaurant(restaurant);
         setOrderProductInformation(order, restaurant);
         order.validateOrder();

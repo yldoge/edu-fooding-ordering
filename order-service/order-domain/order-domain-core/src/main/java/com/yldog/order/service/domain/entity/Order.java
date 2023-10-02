@@ -88,8 +88,8 @@ public class Order extends AggregateRoot<OrderId> {
 
     private void validateItemPrice(OrderItemEntity orderItem) {
         if (!orderItem.isPriceValid())
-            throw new DomainException("Order item price: " + orderItem.getPrice().getAmount() +
-                    " is not valid for product" + orderItem.getProduct().getId().getValue());
+            throw new OrderDomainException("Order item price: " + orderItem.getPrice().getAmount() +
+                    " is not valid for product " + orderItem.getProduct().getId().getValue());
     }
 
 

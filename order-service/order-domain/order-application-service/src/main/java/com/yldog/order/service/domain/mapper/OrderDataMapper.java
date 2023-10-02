@@ -8,6 +8,7 @@ import com.yldog.order.service.domain.dto.create.CreateOrderCommand;
 import com.yldog.order.service.domain.dto.create.CreateOrderResponse;
 import com.yldog.order.service.domain.dto.create.OrderAddress;
 import com.yldog.order.service.domain.dto.create.OrderItemDTO;
+import com.yldog.order.service.domain.dto.track.TrackOrderResponse;
 import com.yldog.order.service.domain.entity.Order;
 import com.yldog.order.service.domain.entity.OrderItemEntity;
 import com.yldog.order.service.domain.entity.Product;
@@ -40,10 +41,19 @@ public class OrderDataMapper {
                 .build();
     }
 
-    public CreateOrderResponse orderToCreateOrderResponse(Order order) {
+    public CreateOrderResponse orderToCreateOrderResponse(Order order, String message) {
         return CreateOrderResponse.builder()
                 .orderTrackingId(order.getTrackingId().getValue())
                 .orderStatus(order.getOrderStatus())
+                .message(message)
+                .build();
+    }
+
+    public TrackOrderResponse orderToTrackOrderResponse(Order order) {
+        return TrackOrderResponse.builder()
+                .orderTrackingId(order.getTrackingId().getValue())
+                .orderStatus(order.getOrderStatus())
+                .failureMessages(order.getFailureMessages())
                 .build();
     }
     private List<OrderItemEntity> orderItemsToOrderItemEntities(List<OrderItemDTO> orderItems) {
