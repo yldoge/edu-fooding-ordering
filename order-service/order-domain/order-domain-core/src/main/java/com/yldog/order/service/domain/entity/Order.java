@@ -1,7 +1,6 @@
 package com.yldog.order.service.domain.entity;
 
 import com.yldog.domain.entity.AggregateRoot;
-import com.yldog.domain.exception.DomainException;
 import com.yldog.domain.valueobject.*;
 import com.yldog.order.service.domain.exception.OrderDomainException;
 import com.yldog.order.service.domain.valueobject.OrderItemId;
@@ -16,11 +15,13 @@ public class Order extends AggregateRoot<OrderId> {
     private final RestaurantId restaurantId;
     private final StreetAddress deliveryAddress;
     private final Money price;
-    private final List<OrderItemEntity> items;
+    private final List<OrderItemDomain> items;
 
     private TrackingId trackingId;
     private OrderStatus orderStatus;
     private List<String> failureMessages;
+
+    public static final String FAILURE_MESSAGE_DELIMITER = ",";
 
     public void initializeOrder() {
         setId(new OrderId(UUID.randomUUID()));
@@ -86,7 +87,7 @@ public class Order extends AggregateRoot<OrderId> {
                 + " is not equal to Order items total: " + orderItemsTotal.getAmount() + "!");
     }
 
-    private void validateItemPrice(OrderItemEntity orderItem) {
+    private void validateItemPrice(OrderItemDomain orderItem) {
         if (!orderItem.isPriceValid())
             throw new OrderDomainException("Order item price: " + orderItem.getPrice().getAmount() +
                     " is not valid for product " + orderItem.getProduct().getId().getValue());
@@ -96,7 +97,7 @@ public class Order extends AggregateRoot<OrderId> {
 
     private void initializeOrderItems() {
         long itemId = 1L;
-        for (OrderItemEntity orderItem : items) {
+        for (OrderItemDomain orderItem : items) {
             orderItem.initializeOrderItem(super.getId(), new OrderItemId(itemId++));
         }
     }
@@ -129,7 +130,7 @@ public class Order extends AggregateRoot<OrderId> {
         return price;
     }
 
-    public List<OrderItemEntity> getItems() {
+    public List<OrderItemDomain> getItems() {
         return items;
     }
 
@@ -154,7 +155,7 @@ public class Order extends AggregateRoot<OrderId> {
         private RestaurantId restaurantId;
         private StreetAddress deliveryAddress;
         private Money price;
-        private List<OrderItemEntity> items;
+        private List<OrderItemDomain> items;
         private TrackingId trackingId;
         private OrderStatus orderStatus;
         private List<String> failureMessages;
@@ -188,7 +189,7 @@ public class Order extends AggregateRoot<OrderId> {
             return this;
         }
 
-        public Builder items(List<OrderItemEntity> val) {
+        public Builder items(List<OrderItemDomain> val) {
             items = val;
             return this;
         }

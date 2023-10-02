@@ -10,7 +10,7 @@ import com.yldog.order.service.domain.dto.create.OrderAddress;
 import com.yldog.order.service.domain.dto.create.OrderItemDTO;
 import com.yldog.order.service.domain.dto.track.TrackOrderResponse;
 import com.yldog.order.service.domain.entity.Order;
-import com.yldog.order.service.domain.entity.OrderItemEntity;
+import com.yldog.order.service.domain.entity.OrderItemDomain;
 import com.yldog.order.service.domain.entity.Product;
 import com.yldog.order.service.domain.entity.Restaurant;
 import com.yldog.order.service.domain.valueobject.StreetAddress;
@@ -56,10 +56,10 @@ public class OrderDataMapper {
                 .failureMessages(order.getFailureMessages())
                 .build();
     }
-    private List<OrderItemEntity> orderItemsToOrderItemEntities(List<OrderItemDTO> orderItems) {
+    private List<OrderItemDomain> orderItemsToOrderItemEntities(List<OrderItemDTO> orderItems) {
         return orderItems.stream()
                 .map(orderItem ->
-                        OrderItemEntity.builder()
+                        OrderItemDomain.builder()
                                 .product(new Product(new ProductId(orderItem.getProductId())))
                                 .price(new Money(orderItem.getPrice()))
                                 .quantity(orderItem.getQuantity())
