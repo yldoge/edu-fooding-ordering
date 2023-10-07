@@ -5,7 +5,7 @@ import com.yldog.domain.valueobject.PaymentStatus;
 import com.yldog.payment.service.entity.CreditEntry;
 import com.yldog.payment.service.entity.CreditHistory;
 import com.yldog.payment.service.entity.Payment;
-import com.yldog.payment.service.event.PaymentCancelEvent;
+import com.yldog.payment.service.event.PaymentCancelledEvent;
 import com.yldog.payment.service.event.PaymentCompletedEvent;
 import com.yldog.payment.service.event.PaymentEvent;
 import com.yldog.payment.service.event.PaymentFailedEvent;
@@ -57,7 +57,7 @@ public class PaymentDomainServiceImpl implements PaymentDomainService{
         if (failureMessages.isEmpty()) {
             log.info("Payment is cancelled for order id: {}", payment.getOrderId().getValue());
             payment.updateStatus(PaymentStatus.CANCELLED);
-            return new PaymentCancelEvent(payment, ZonedDateTime.now(ZoneId.of(UTC)));
+            return new PaymentCancelledEvent(payment, ZonedDateTime.now(ZoneId.of(UTC)));
         } else {
             log.info("Payment cancellation is failed for order id: {}", payment.getOrderId().getValue());
             payment.updateStatus(PaymentStatus.FAILED);
