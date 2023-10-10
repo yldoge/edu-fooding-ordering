@@ -4,7 +4,7 @@ import com.yldog.domain.valueobject.CustomerId;
 import com.yldog.domain.valueobject.Money;
 import com.yldog.domain.valueobject.OrderId;
 import com.yldog.payment.service.domain.dto.PaymentRequest;
-import com.yldog.payment.service.entity.Payment;
+import com.yldog.payment.service.domain.entity.Payment;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

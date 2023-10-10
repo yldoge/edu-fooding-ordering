@@ -1,7 +1,7 @@
 package com.yldog.payment.service.domain.ports.output.repository;
 
 import com.yldog.domain.valueobject.CustomerId;
-import com.yldog.payment.service.entity.CreditEntry;
+import com.yldog.payment.service.domain.entity.CreditEntry;
 
 import java.util.Optional;
 

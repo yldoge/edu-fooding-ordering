@@ -1,6 +1,6 @@
 package com.yldog.payment.service.domain.ports.output.repository;
 
-import com.yldog.payment.service.entity.Payment;
+import com.yldog.payment.service.domain.entity.Payment;
 
 import java.util.Optional;
 import java.util.UUID;

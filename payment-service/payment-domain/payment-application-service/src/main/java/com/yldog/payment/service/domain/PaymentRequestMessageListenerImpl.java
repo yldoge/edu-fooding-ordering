@@ -5,7 +5,7 @@ import com.yldog.payment.service.domain.ports.input.message.listener.PaymentRequ
 import com.yldog.payment.service.domain.ports.output.message.publisher.PaymentCancelledMessagePublisher;
 import com.yldog.payment.service.domain.ports.output.message.publisher.PaymentCompletedMessagePublisher;
 import com.yldog.payment.service.domain.ports.output.message.publisher.PaymentFailedMessagePublisher;
-import com.yldog.payment.service.event.PaymentEvent;
+import com.yldog.payment.service.domain.event.PaymentEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 @Slf4j

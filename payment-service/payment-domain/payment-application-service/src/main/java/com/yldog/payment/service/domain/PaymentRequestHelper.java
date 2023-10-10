@@ -1,7 +1,6 @@
 package com.yldog.payment.service.domain;
 
 import com.yldog.domain.valueobject.CustomerId;
-import com.yldog.payment.service.PaymentDomainService;
 import com.yldog.payment.service.domain.dto.PaymentRequest;
 import com.yldog.payment.service.domain.exception.PaymentApplicationServiceException;
 import com.yldog.payment.service.domain.mapper.PaymentDataMapper;
@@ -11,10 +10,10 @@ import com.yldog.payment.service.domain.ports.output.message.publisher.PaymentFa
 import com.yldog.payment.service.domain.ports.output.repository.CreditEntryRepository;
 import com.yldog.payment.service.domain.ports.output.repository.CreditHistoryRepository;
 import com.yldog.payment.service.domain.ports.output.repository.PaymentRepository;
-import com.yldog.payment.service.entity.CreditEntry;
-import com.yldog.payment.service.entity.CreditHistory;
-import com.yldog.payment.service.entity.Payment;
-import com.yldog.payment.service.event.PaymentEvent;
+import com.yldog.payment.service.domain.entity.CreditEntry;
+import com.yldog.payment.service.domain.entity.CreditHistory;
+import com.yldog.payment.service.domain.entity.Payment;
+import com.yldog.payment.service.domain.event.PaymentEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

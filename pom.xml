@@ -96,6 +96,11 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.yldog</groupId>
+                <artifactId>payment-application-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
                 <version>${mockito.version}</version>
